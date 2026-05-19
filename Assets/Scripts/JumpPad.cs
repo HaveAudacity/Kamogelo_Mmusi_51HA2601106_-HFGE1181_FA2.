@@ -14,7 +14,7 @@ public class JumpPad : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.GetComponent<PlayerController>().SetJumpPadStatus(true);
+            col.GetComponent<UpdatedPlayerController>().SetJumpPadStatus(true);
             Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
             Vector2 colDirection = col.transform.position - transform.position;
             rb.linearVelocity = Vector2.zero;
@@ -23,7 +23,7 @@ public class JumpPad : MonoBehaviour
             {
                 case ForceDirection.up:
                     rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-                    col.GetComponent<PlayerController>().SetJumpPadStatus(false);
+                    col.GetComponent<UpdatedPlayerController>().SetJumpPadStatus(false);
                     break;
                 case ForceDirection.left:
                     rb.AddForce(Vector2.left * force, ForceMode2D.Impulse);
@@ -47,7 +47,7 @@ public class JumpPad : MonoBehaviour
                     break;
                 default:
                     rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-                    col.GetComponent<PlayerController>().SetJumpPadStatus(false);
+                    col.GetComponent<UpdatedPlayerController>().SetJumpPadStatus(false);
                     break;
             }
         }
@@ -56,7 +56,7 @@ public class JumpPad : MonoBehaviour
     public IEnumerator HangTimer(Collider2D col)
     {
         yield return new WaitForSeconds(hangTime);
-        col.GetComponent<PlayerController>().SetJumpPadStatus(false);
+        col.GetComponent<UpdatedPlayerController>().SetJumpPadStatus(false);
 
     }
 }
